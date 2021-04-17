@@ -13,7 +13,7 @@ require("dotenv").config();
 const port = 3003;
 
 app.get("/", (req, res) => {
-	res.send("Hello I am Working");
+	res.send("Hello I am Working Now");
 });
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3xxwt.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
