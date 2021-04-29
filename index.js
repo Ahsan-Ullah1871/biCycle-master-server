@@ -32,6 +32,9 @@ client.connect((err) => {
 		.db("Bicycle_Master")
 		.collection("booking");
 	const AdminCollection = client.db("Bicycle_Master").collection("admin");
+	const GalleryCollection = client
+		.db("Bicycle_Master")
+		.collection("gallery");
 	// perform actions on the collection object
 	console.log("database Connected");
 	// post services:
@@ -148,6 +151,25 @@ client.connect((err) => {
 	// Get All Admin:
 	app.get("/allAdmin", (req, res) => {
 		AdminCollection.find({}).toArray((err, documents) => {
+			console.log(documents);
+			res.send(documents);
+		});
+	});
+
+	// post new Gallery Image:
+
+	app.post("/gallery", (req, res) => {
+		const gallery = req.body;
+
+		console.log(gallery);
+		GalleryCollection.insertOne(gallery).then((result) => {
+			res.send(result.insertedCount > 0);
+		});
+	});
+
+	// Get All Admin:
+	app.get("/AllGalleryData", (req, res) => {
+		GalleryCollection.find({}).toArray((err, documents) => {
 			console.log(documents);
 			res.send(documents);
 		});
